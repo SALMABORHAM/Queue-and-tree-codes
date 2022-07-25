@@ -1,0 +1,62 @@
+//Q1
+#include<iostream> 
+using namespace std;
+struct Node {
+	int data;
+	Node* next;
+	char word;
+};
+Node * sortedInsert(Node * head, int n)
+{
+	Node * p = head;
+	Node * newNode = new Node;
+	newNode->data = n;
+	newNode->next = NULL;
+	if (head == NULL)
+	{
+		head = newNode;
+	}
+	else if (head->data>n)
+	{
+		newNode->next = head;
+		head = newNode;
+	}
+	else
+	{
+		while (p->next != NULL && p->next->data<n)
+		{
+			p = p->next;
+		}
+		newNode->next = p->next;
+		p->next = newNode;
+	}
+	return head;
+}
+void deletelist(Node* head)
+{
+	Node* p = head;
+	Node* next;
+
+	while (p != NULL)
+	{
+		next = p->next;
+		free(p);
+		p = next;
+	}
+}
+int main() {
+	Node * head = NULL;
+	head = sortedInsert(head, 'sa');
+	head = sortedInsert(head, 'lm');
+	head = sortedInsert(head, 'el');
+	head = sortedInsert(head, 'sa');
+	head = sortedInsert(head, 'yd');
+	head = sortedInsert(head, 'bo');
+	head = sortedInsert(head, 'rh');
+	head = sortedInsert(head, 'am');
+	head = sortedInsert(head, 'so');
+	head = sortedInsert(head, 'ly');
+	head = sortedInsert(head, 'mn');
+	system ("pause");
+	return 0;
+}
